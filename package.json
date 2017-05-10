@@ -1,0 +1,64 @@
+{
+  "name": "dact-electron",
+  "version": "0.0.0",
+  "description": "Sync dact between electron processes",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "es",
+    "dist"
+  ],
+  "scripts": {
+    "test": "standard",
+    "build:es": "cross-env BABEL_ENV=es babel index.js --out-dir es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel index.js --out-dir dist",
+    "prepublish": "npm run build:es && npm run build:commonjs",
+    "postpublish": "rm -rf es dist && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrepolischuk/dact-electron.git"
+  },
+  "keywords": [
+    "dact",
+    "electron",
+    "sync"
+  ],
+  "author": "Andrey Polischuk <me@andrepolischuk.com> (https://andrepolischuk.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrepolischuk/dact-electron/issues"
+  },
+  "homepage": "https://github.com/andrepolischuk/dact-electron#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "cross-env": "^4.0.0",
+    "standard": "^9.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ],
+    "env": {
+      "commonjs": {
+        "plugins": [
+          "add-module-exports",
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
+  }
+}
