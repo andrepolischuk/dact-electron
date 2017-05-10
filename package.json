@@ -1,6 +1,6 @@
 {
   "name": "dact-electron",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Sync dact between electron processes",
   "main": "dist/index.js",
   "module": "es/index.js",
